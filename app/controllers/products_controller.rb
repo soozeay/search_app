@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    set_product_column
   end
 
   def search
@@ -14,4 +15,9 @@ class ProductsController < ApplicationController
   def search_product
     @p = Product.ransack(params[:q])  # 検索オブジェクトを生成
   end
+
+  def set_product_column
+    @product_name = Product.select("name").distinct  # 重複なくnameカラムのデータを取り出す
+  end
+
 end
