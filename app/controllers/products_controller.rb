@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
   def index
     @products = Product.all
     set_product_column
-    set_category_column
   end
 
   def search
@@ -19,10 +18,6 @@ class ProductsController < ApplicationController
 
   def set_product_column
     @product_name = Product.select("name").distinct  # 重複なくnameカラムのデータを取り出す
-  end
-
-  def set_category_column
-    @category_name = Category.select("name").distinct
   end
 
 end
